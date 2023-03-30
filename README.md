@@ -2,11 +2,11 @@
 A WPF POS System have many features
 
 • Making orders,print kitchen orders and print
-invoices.
-• can handle wages and expenses.
+invoices.<br />
+• can handle wages and expenses.<br />
 • open, closing shifts with total and net of the
-shift.
-• have daily, monthly ,and yearly reports.
-• clean and modern style and easy to use.
+shift.<br />
+• have daily, monthly ,and yearly reports.<br />
+• clean and modern style and easy to use.<br />
 • has ability to communicate with Mikrotik
-routers
+routers<br />
