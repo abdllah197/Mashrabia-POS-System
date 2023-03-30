@@ -1,0 +1,441 @@
+﻿<Window
+    x:Class="Mashrabia.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Settings"
+    Width="800"
+    Height="545"
+    Background="#FF3C003E"
+    Icon="images.png"
+    MouseDown="Window_MouseDown"
+    ResizeMode="NoResize"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="TabStripPlacement" Value="Top" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="BorderBrush" Value="Pink" />
+            <Setter Property="BorderThickness" Value="10" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border
+                            x:Name="PART_Border"
+                            Margin="0,0,0,0"
+                            Padding="10,5,10,0"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="Black"
+                            BorderThickness="1,1,1,0"
+                            CornerRadius="2,2,0,0">
+                            <ContentPresenter Margin="5" ContentSource="Header" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#fff291" />
+                                <Setter Property="Foreground" Value="#000" />
+                            </Trigger>
+
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter Property="Background" Value="#FF382825" />
+                                <Setter Property="Foreground" Value="#fff" />
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF3E2723">
+        <TabControl
+            Margin="0,36,0,0"
+            FlowDirection="RightToLeft"
+            FontSize="16"
+            FontWeight="Bold">
+            <TabItem
+                FontSize="14"
+                FontWeight="Bold"
+                Header="تكويد">
+                <Grid Background="#FFEFEBE9" FlowDirection="LeftToRight">
+                    <DataGrid
+                        x:Name="dg"
+                        Width="314"
+                        Margin="10,10,0,10"
+                        HorizontalAlignment="Left"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        AutoGeneratingColumn="Dg_AutoGeneratingColumn"
+                        CanUserReorderColumns="False"
+                        CanUserResizeRows="False"
+                        ColumnWidth="*"
+                        FlowDirection="LeftToRight"
+                        FontSize="16"
+                        IsReadOnly="True"
+                        MinColumnWidth="30"
+                        PreviewKeyDown="Dg_PreviewKeyDown"
+                        SelectionMode="Single" />
+                    <Grid
+                        Width="231"
+                        Margin="0,10,10,10"
+                        HorizontalAlignment="Right"
+                        Background="#FFE0E0E0">
+                        <ComboBox
+                            x:Name="coded"
+                            Height="45"
+                            Margin="10,10,10,0"
+                            VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            FlowDirection="RightToLeft"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            SelectionChanged="Coded_SelectionChanged" />
+                        <StackPanel
+                            x:Name="category_s"
+                            Margin="10,78,10,80"
+                            Orientation="Vertical"
+                            Visibility="Hidden">
+                            <Label
+                                Width="96"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                HorizontalContentAlignment="Right"
+                                VerticalContentAlignment="Center"
+                                Content="المجموعة"
+                                FontSize="18"
+                                FontWeight="Bold" />
+                            <ComboBox
+                                x:Name="category"
+                                Height="45"
+                                VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                SelectionChanged="Category_SelectionChanged" />
+                            <TextBox
+                                x:Name="category_item"
+                                Height="60"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                materialDesign:HintAssist.Hint="اسم الصنف"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                KeyDown="Category_item_KeyDown"
+                                MaxLength="25"
+                                MaxLines="1"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                TextWrapping="Wrap" />
+                            <TextBox
+                                x:Name="category_price"
+                                Height="60"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                materialDesign:HintAssist.Hint="السعر"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                KeyDown="Category_price_KeyDown"
+                                MaxLength="9"
+                                MaxLines="1"
+                                PreviewTextInput="Category_price_PreviewTextInput"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                        <StackPanel
+                            x:Name="threeonone"
+                            Margin="10,78,10,80"
+                            Orientation="Vertical">
+                            <Label
+                                x:Name="Stock_title"
+                                Width="122"
+                                Height="35"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                HorizontalContentAlignment="Right"
+                                VerticalContentAlignment="Center"
+                                Content="الصنف"
+                                FontSize="18"
+                                FontWeight="Bold" />
+                            <TextBox
+                                x:Name="Stock_in"
+                                Height="39"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                materialDesign:TransitionAssist.DisableTransitions="True"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                KeyDown="Stock_in_KeyDown"
+                                MaxLength="25"
+                                MaxLines="1"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                        <Grid
+                            x:Name="griditems"
+                            Margin="10,52,10,80"
+                            Visibility="Hidden">
+                            <Label
+                                Width="211"
+                                Height="35"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                Content="المجموعة"
+                                FlowDirection="RightToLeft"
+                                FontSize="18"
+                                FontWeight="Bold" />
+                            <ComboBox
+                                x:Name="category_1"
+                                Height="45"
+                                Margin="0,40,0,0"
+                                VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                KeyDown="Category_1_KeyDown"
+                                SelectionChanged="Category_1_SelectionChanged" />
+                            <Label
+                                Width="211"
+                                Height="31"
+                                Margin="0,90,0,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                Content="الصنف"
+                                FlowDirection="RightToLeft"
+                                FontSize="18"
+                                FontWeight="Bold" />
+                            <ComboBox
+                                x:Name="item_1"
+                                Height="45"
+                                Margin="0,121,0,0"
+                                VerticalAlignment="Top"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                KeyDown="Item_1_KeyDown" />
+                        </Grid>
+                        <Button
+                            x:Name="setings_in"
+                            Height="45"
+                            Margin="10,0,10,10"
+                            VerticalAlignment="Bottom"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                            Click="Setings_in_Click"
+                            Content="ادخال"
+                            FontSize="16"
+                            FontWeight="Bold"
+                            Style="{DynamicResource MaterialDesignRaisedButton}" />
+                        <StackPanel
+                            x:Name="mowaerden"
+                            Margin="10,78,10,80"
+                            Orientation="Vertical"
+                            Visibility="Hidden">
+                            <TextBox
+                                x:Name="mowared_name"
+                                Height="55"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                materialDesign:HintAssist.Hint="اسم المورد"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                MaxLength="30"
+                                MaxLines="1"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                TextWrapping="Wrap" />
+                            <TextBox
+                                x:Name="mowared_number"
+                                Height="55"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                materialDesign:HintAssist.Hint="رقم المورد"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                MaxLength="20"
+                                MaxLines="1"
+                                PreviewTextInput="Mowared_number_PreviewTextInput"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                TextWrapping="Wrap" />
+                            <TextBox
+                                x:Name="mowared_notes"
+                                Height="55"
+                                VerticalAlignment="Top"
+                                VerticalContentAlignment="Center"
+                                materialDesign:HintAssist.Hint="ملاحظات"
+                                FlowDirection="RightToLeft"
+                                FontSize="16"
+                                FontWeight="Bold"
+                                MaxLength="35"
+                                MaxLines="1"
+                                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+            <TabItem
+                FontSize="14"
+                FontWeight="Bold"
+                Header="كلمة السر">
+                <Grid Margin="0,-18,0.4,17.6" Background="#FFEFEBE9">
+                    <PasswordBox
+                        x:Name="old_password"
+                        Width="211"
+                        Height="70"
+                        Margin="10,35,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="كلمة السر القديمة"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                        KeyDown="Old_password_KeyDown"
+                        MaxLength="25" />
+                    <PasswordBox
+                        x:Name="Password"
+                        Width="211"
+                        Height="70"
+                        Margin="10,130,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="كلمة السر الجديدة"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                        KeyDown="Password_KeyDown"
+                        MaxLength="25" />
+                    <PasswordBox
+                        x:Name="Confirm_Password"
+                        Width="211"
+                        Height="70"
+                        Margin="10,225,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="تأكيد كلمة السر الجديدة"
+                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                        KeyDown="Confirm_Password_KeyDown"
+                        MaxLength="25" />
+                    <Button
+                        Width="211"
+                        Height="41"
+                        Margin="10,319,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                        Click="Setings_in_Click"
+                        Content="تغيير"
+                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+                    <Button
+                        x:Name="order_id_change"
+                        Width="211"
+                        Height="41"
+                        Margin="453,144,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                        Click="order_id_change_Click"
+                        Content="تغيير رقم الاوردرات"
+                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+                </Grid>
+            </TabItem>
+            <TabItem
+                x:Name="Microtik"
+                FontSize="14"
+                FontWeight="Bold"
+                Header="Microtik">
+                <Grid Background="#FFEFEBE9">
+                    <TextBox
+                        x:Name="Host"
+                        Width="211"
+                        Height="70"
+                        Margin="10,35,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="Host"
+                        IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                        KeyDown="Save_Microtik_Login_KeyDown"
+                        MaxLength="25" />
+                    <TextBox
+                        x:Name="User"
+                        Width="211"
+                        Height="70"
+                        Margin="10,130,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="User"
+                        IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                        KeyDown="Save_Microtik_Login_KeyDown"
+                        MaxLength="25" />
+                    <TextBox
+                        x:Name="Pass"
+                        Width="211"
+                        Height="70"
+                        Margin="10,225,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="Password"
+                        IsEnabled="{Binding IsChecked, ElementName=MaterialDesignOutlinedPasswordFieldPasswordBoxEnabledComboBox}"
+                        KeyDown="Save_Microtik_Login_KeyDown"
+                        MaxLength="25" />
+                    <Button
+                        Width="211"
+                        Height="41"
+                        Margin="10,319,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                        Click="Save_Microtik_Login"
+                        Content="Save"
+                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+                    <Button
+                        Width="211"
+                        Height="41"
+                        Margin="577,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth4"
+                        Click="Hotspot"
+                        Content="Hotspot Settings"
+                        Style="{DynamicResource MaterialDesignRaisedButton}" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button
+            Width="66"
+            Height="31"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            materialDesign:ShadowAssist.ShadowDepth="Depth4"
+            Click="Button_Click"
+            Content="رجوع "
+            FontSize="16"
+            FontWeight="Bold"
+            Style="{DynamicResource MaterialDesignRaisedButton}" />
+    </Grid>
+</Window>

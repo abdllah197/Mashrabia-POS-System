@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+    </configSections>
+    
+    <connectionStrings>
+        <add name="ma5zan" connectionString="XpoProvider=MSAccess;Provider=Microsoft.Jet.OLEDB.4.0;Mode=Share Deny None;data source=|DataDirectory|\ma5zan.mdb;Jet OLEDB:Database Password=3bood197"/>
+        <add name="NewOrdersPrint" connectionString="XpoProvider=MSAccess;Provider=Microsoft.Jet.OLEDB.4.0;Mode=Share Deny None;data source=|DataDirectory|\PrintOrders.mdb;Jet OLEDB:Database Password=3bood197"/>
+        <add name="Shift" connectionString="XpoProvider=MSAccess;Provider=Microsoft.Jet.OLEDB.4.0;Mode=Share Deny None;data source=|DataDirectory|\Shift.mdb;Jet OLEDB:Database Password=3bood197"/>
+        <add name="FinalData" connectionString="XpoProvider=MSAccess;Provider=Microsoft.Jet.OLEDB.4.0;Mode=Share Deny None;data source=|DataDirectory|\FinalData.mdb;Jet OLEDB:Database password=3bood197;"/>
+    </connectionStrings>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1"/>
+    </startup>
+</configuration>

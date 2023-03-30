@@ -1,0 +1,84 @@
+﻿<Window x:Class="Mashrabia.Hotspot"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"   
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Settings" Height="666.2" Width="800" Background="#FF3C003E" WindowStyle="None" ResizeMode="NoResize" MouseDown="Window_MouseDown" Icon="images.png">
+    <Window.Resources>
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="TabStripPlacement" Value="Top" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="BorderBrush" Value="Pink"/>
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderThickness="1,1,1,0"
+BorderBrush="Black" Margin="0,0,0,0" CornerRadius="2,2,0,0" Padding="10,5,10,0">
+                            <ContentPresenter ContentSource="Header" Margin="5" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#fff291"/>
+                                <Setter Property="Foreground" Value="#000"/>
+                            </Trigger>
+
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter Property="Background" Value="#FF382825"/>
+                                <Setter Property="Foreground" Value="#fff"/>
+
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF3E2723">
+        <TabControl FlowDirection="RightToLeft" Margin="0,36,0,0" FontWeight="Bold" FontSize="16">
+            <TabItem Header="Hotspot Settings" FontWeight="Bold" FontSize="14">
+                <Grid Background="#FFEFEBE9" FlowDirection="LeftToRight">
+                    <DataGrid x:Name="dg" Margin="10,10,0,10.2" ColumnWidth="*" FontSize="16" IsReadOnly="True" SelectionMode="Single" CanUserReorderColumns="False" FlowDirection="LeftToRight" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="452" CanUserResizeRows="False" MinColumnWidth="30" PreviewKeyDown="dg_PreviewKeyDown" AutoGeneratingColumn="dg_AutoGeneratingColumn"/>
+                    <Grid Margin="0,10,10.4,10.2" Background="#FFE0E0E0" HorizontalAlignment="Right" Width="311">
+                        <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" x:Name="Op" Margin="10,10,10,0" VerticalAlignment="Top" Height="45" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="Op_SelectionChanged"/>
+                        <Grid x:Name="profie_create" Margin="10,73,9,60" Visibility="Hidden">
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Profile Name" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}"  x:Name="Profile" Height="76" Margin="0,0,0.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="15" KeyDown="Generate_Name_KeyDown"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Users Number" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}"  x:Name="Users" Height="76" Margin="0,81,1.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="3" PreviewTextInput="Users_PreviewTextInput" KeyDown="Generate_Name_KeyDown"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" materialDesign:HintAssist.Hint="Upload Limit Kb" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" x:Name="up" Height="75" Margin="0,162,0.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" FontWeight="Bold" MinLines="1" HorizontalContentAlignment="Center" MaxLength="4" MaxLines="1" PreviewTextInput="Users_PreviewTextInput" KeyDown="Generate_Name_KeyDown"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" materialDesign:HintAssist.Hint="Download Limit Kb" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" x:Name="Down" Height="75" Margin="0,242,0.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" FontWeight="Bold" MinLines="1" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="4" PreviewTextInput="Users_PreviewTextInput" KeyDown="Generate_Name_KeyDown"/>
+                            <Label Content="Limit Time" HorizontalAlignment="Left" Margin="0,322,0,0" VerticalAlignment="Top" Width="292" Height="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" materialDesign:HintAssist.Hint="Days" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" x:Name="Days" Height="75" Margin="-2,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" FontWeight="Bold" MinLines="1" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="95" MaxLength="2" MaxLines="1" PreviewTextInput="Users_PreviewTextInput" KeyDown="Generate_Name_KeyDown"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" materialDesign:HintAssist.Hint="Hours" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" x:Name="Hours" Height="75" Margin="98,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" FontWeight="Bold" MinLines="1" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="94" MaxLines="1" MaxLength="2" PreviewTextInput="Users_PreviewTextInput" KeyDown="Generate_Name_KeyDown"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"  AcceptsReturn="True" materialDesign:HintAssist.Hint="Minutes" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}" x:Name="Minutes" Height="75" Margin="197,357,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" FontWeight="Bold" MinLines="1" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Width="94" MaxLength="2" MaxLines="1" PreviewTextInput="Users_PreviewTextInput" KeyDown="Generate_Name_KeyDown"/>
+                        </Grid>
+                        <Grid x:Name="Generate_prof" Margin="7,80,9,60">
+                            <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" x:Name="Profiles" Margin="3,0,1.2,0" VerticalAlignment="Top" Height="45" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Letter" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}"  x:Name="Letter" Height="65" Margin="-1,120,1.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="4" KeyDown="Generate_Name_KeyDown"/>
+                            <CheckBox x:Name="uap" Content="User &amp; Pass" HorizontalAlignment="Left" Margin="-1,400,0,0" VerticalAlignment="Top" Width="104" Unchecked="uap_Unchecked" Checked="uap_Checked"/>
+                            <CheckBox x:Name="uep" Content="User = Pass" HorizontalAlignment="Left" Margin="191,400,0,0" VerticalAlignment="Top" Width="102" Checked="uep_Checked" Unchecked="uep_Unchecked"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Length Of Code" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}"  x:Name="Length" Height="65" Margin="-1,190,1.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="2" KeyDown="Generate_Name_KeyDown" PreviewTextInput="Users_PreviewTextInput"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="User Name" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}"  x:Name="User" Height="65" Margin="0,50,0.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="15" KeyDown="Generate_Name_KeyDown" IsUndoEnabled="True"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Limit In MB" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}"  x:Name="LimitMB" Height="65" Margin="0,260,0.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="6" KeyDown="Generate_Name_KeyDown" PreviewTextInput="limit_PreviewTextInput"/>
+                            <TextBox Style="{StaticResource MaterialDesignFilledTextFieldTextBox}" materialDesign:HintAssist.Hint="Price" IsEnabled="{Binding IsChecked, ElementName=MaterialDesignFilledTextFieldTextBoxEnabledComboBox}"  x:Name="Price" Height="65" Margin="-2,330,1.2,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" MaxLines="1" MaxLength="3" KeyDown="Generate_Name_KeyDown" PreviewTextInput="Users_PreviewTextInput"/>
+                        </Grid>
+                        <Grid x:Name="View_grid" Margin="7,60,9,420" Visibility="Hidden">
+                            <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" x:Name="View" Margin="3,0,1.2,0" VerticalAlignment="Top" Height="45" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="View_SelectionChanged"/>
+                            <Button Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ShadowAssist.ShadowDepth="Depth4" x:Name="Refresh" Content="Refresh" Margin="0,0,0.2,0.2" FontWeight="Bold" FontSize="16" Height="45" VerticalAlignment="Bottom" Click="refresh"/>
+                        </Grid>
+                        <Button Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ShadowAssist.ShadowDepth="Depth4" x:Name="OK" Content="OK" Margin="10,0,10,10" FontWeight="Bold" FontSize="16" Height="45" VerticalAlignment="Bottom" Click="OK_Click"/>
+                    </Grid>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button Style="{DynamicResource MaterialDesignRaisedButton}" materialDesign:ShadowAssist.ShadowDepth="Depth4" Content="خروج" Height="31" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" Click="Close" HorizontalAlignment="Right" Width="66"/>
+    </Grid>
+</Window>
